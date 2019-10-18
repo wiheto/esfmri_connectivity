@@ -1,0 +1,27 @@
+sub	use	reject_session	rejection_reason	notes
+sub-292	1	n/a	n/a	could be rejected if only single hemisphere is to be used as the artifact extends over both hemispheres. but with parcel-wise rejection could be ok.
+sub-294	1	n/a	n/a	could be rejected if only single hemisphere is to be used as the artifact extends over both hemispheres. but with parcel-wise rejection could be ok.
+sub-302	1	n/a	n/a	n/a
+sub-303	1	n/a	n/a	n/a
+sub-307	1	n/a	n/a	n/a
+sub-314	1	n/a	n/a	n/a
+sub-316	1	n/a	n/a	n/a
+sub-320	1	task-es_run-2,task-es_run-3	part of cortex cut off	n/a
+sub-330	1	task-es_run-6,task-es_run-7,task-es_run-8	part of cortex cut off	n/a
+sub-331	0	n/a	larger frontmid artifact. also stripe artifact/distortion across anat.	
+sub-334	0	n/a	larger frontmid artifact. stripe artifact/distortion across anat. 	n/a
+sub-335	1	n/a	n/a	both hemispheres show an artifact. if only one hemisphere is going to be used in an analysis, then this subject should be rejected. 
+sub-339	1	n/a	n/a	could be rejected if only single hemisphere is to be used as the artifact extends over both hemispheres. but with parcel-wise rejection could be ok.
+sub-352	0	n/a	poor registration	some parts of the cortex could be recoverable. but artifact seems too extensive to be used
+sub-357	1	task-es_run-6,task-es_run-7,task-es_run-8,task-es_run-9,task-es_run-10,task-es_run-11	run 9 and 10 are very short. run 6-8 have part of cortex cut off 	
+sub-369	1	n/a	n/a	n/a
+sub-372	1	task-rest_run-1,task-rest_run-2,task-rest_run-3	preop rest had top of cortex cut off	amount of cut off is small in preop session and might be useable in some contexts
+sub-376	1	n/a	n/a	n/a
+sub-384	0	n/a	slight distrotion in anatomical image. considerable dropout covering both hemispheres	n/a
+sub-394	1	tast-es_run-2,	very short runs	n/a
+sub-395	0	n/a	registration over both hemispheres has considerable noise	n/a
+sub-399	1	n/a	n/a	n/a
+sub-400	1	tast-es_run-4	run 4 is too short (14 vols long)	could be rejected if only single hemisphere is to be used as the artifact extends over both hemispheres. but with parcel-wise rejection could be ok.
+sub-403	1	tast-es_run-4,tast-es_run-5,tast-es_run-6	part off cortext cut off. run 5 also too short	n/a
+sub-405	1	n/a	n/a	n/a
+sub-413	1	n/a	n/a	n/a
