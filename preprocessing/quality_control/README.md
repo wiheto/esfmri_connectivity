@@ -6,4 +6,4 @@ Raw data needs to be downloaded from openneuro.org. And preprocessed with fmripr
 
 ### Contents
 
-  - fmriprep_evaluation.tsv: this is a subjective evaluation of the reports. 
+__fmriprep_evaluation.tsv__: this is a subjective evaluation of the reports. 
