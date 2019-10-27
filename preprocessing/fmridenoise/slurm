@@ -3,7 +3,7 @@
 # An example jobarray sbatch file for Sherlock
 ##############################################
 #SBATCH -J denoise                 # Give me a job name
-#SBATCH --array=1-1%1             # Number of lines in corresponding tasks_list.sh file,
+#SBATCH --array=2-2%1             # Number of lines in corresponding tasks_list.sh file,
                                   # and have max 10 tasks running in parallel at a time
 #SBATCH -p russpold,normal,owners,hns		  # Queues you can submit to.
 #SBATCH --time=48:00:00           # Wallclock time
