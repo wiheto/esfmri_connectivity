@@ -8,7 +8,7 @@ sub-314	1	n/a	n/a	n/a
 sub-316	1	n/a	n/a	n/a
 sub-320	1	task-es_run-02,task-es_run-03	part of cortex cut off	n/a
 sub-330	1	task-es_run-06,task-es_run-07,task-es_run-08	part of cortex cut off	n/a
-sub-331	0	n/a	larger frontmid artifact. also stripe artifact/distortion across anat.	
+sub-331	0	task-es_run-04	larger frontmid artifact. also stripe artifact/distortion across anat. Run 4 is is also short	
 sub-334	0	n/a	larger frontmid artifact. stripe artifact/distortion across anat. 	n/a
 sub-335	1	n/a	n/a	both hemispheres show an artifact. if only one hemisphere is going to be used in an analysis, then this subject should be rejected. 
 sub-339	1	n/a	n/a	could be rejected if only single hemisphere is to be used as the artifact extends over both hemispheres. but with parcel-wise rejection could be ok.
