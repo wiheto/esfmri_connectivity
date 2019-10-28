@@ -19,7 +19,6 @@
 # ------------------------------------------
 module load system                          # Only Sherlock2
 unset PYTHONPATH
-export FS_LICENSE=/home/users/wiltho/freesurfer/license.txt      # Necessary for FMRIPREP only
 # The heavylifting happens here
 # Make sure you have a tasks_list.sh file ready in the same working directory,
 # with one task per line.
