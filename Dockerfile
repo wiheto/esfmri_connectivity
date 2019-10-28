@@ -18,4 +18,3 @@ RUN pip install plotje==1.1
 RUN pip install python-igraph==0.7.0
 RUN pip install leidenalg==0.7.0
 ENTRYPOINT /bin/sh
-

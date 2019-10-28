@@ -1,0 +1,25 @@
+#!/bin/bash
+##############################################
+# An example jobarray sbatch file for Sherlock
+##############################################
+#SBATCH -J denoise                 # Give me a job name
+#SBATCH --array=2-2%1             # Number of lines in corresponding tasks_list.sh file,
+                                  # and have max 10 tasks running in parallel at a time
+#SBATCH -p russpold,normal,owners,hns		  # Queues you can submit to.
+#SBATCH --time=48:00:00           # Wallclock time
+#SBATCH -n 1	                     # Each line of tasks_list.sh is an independent task
+#SBATCH --cpus-per-task=24        # Say you want each line to use 10 cpus.
+#SBATCH --ntasks-per-node=1       # Necessary for the job array to allocate resources correctly
+#SBATCH --mem-per-cpu=6G                                  # (useful if your tasks take all available memory)
+# Outputs ----------------------------------
+#SBATCH -o jobs/%A-%a.out
+#SBATCH -e jobs/%A-%a.err
+#SBATCH --mail-user=<write email here>
+#SBATCH --mail-type=ALL
+# ------------------------------------------
+module load system                          # Only Sherlock2
+unset PYTHONPATH
+# The heavylifting happens here
+# Make sure you have a tasks_list.sh file ready in the same working directory,
+# with one task per line.
+eval $( sed "${SLURM_ARRAY_TASK_ID}q;d" tasks_list.sh )
