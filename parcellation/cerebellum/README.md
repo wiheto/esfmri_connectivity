@@ -6,9 +6,9 @@ Attribution for this atlas: King, M., Hernandez-Castillo, C.R., Poldrack, R. Ivr
 
 The SUIT atlas files are shared under the [Creative Commons Attribution-NonCommercial 3.0 Unported License](http://creativecommons.org/licenses/by-nc/3.0/deed.en_US) and this licence applies to them here. Read more info [here](http://www.diedrichsenlab.org/imaging/mdtb.htm)
 
-## How to recreate the files in this repo
+## How to recreate the files in this directory
 
-All the files that are needed in this project are provided in this repo.
+All the files that are needed in this project are provided in this directory.
 
 ## Step 1: Download the file
 
