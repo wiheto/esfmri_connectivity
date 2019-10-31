@@ -16,6 +16,6 @@ OSF link: <https://osf.io/pdhfu/>
 
 Each projects code
 
--   ./projectname/
+-   ./esfmri_connectivity/projectname/
 
 In the README of each directory it should be clearly stated which data it is acting on and contain a list or execution order. If a Dockerfile has been used for a specific part of the analysis (e.g. fMRIPrep) this should be stated. If nothing is specified, then the main ./Dockerfile is used.  

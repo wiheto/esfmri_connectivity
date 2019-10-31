@@ -16,19 +16,19 @@ The file mdtb.zip was downloaded from [here](http://www.diedrichsenlab.org/imagi
 
 ## Step 2: Compress
 
-In this directory type in terminal: `gzip ./parcellation/cerebellum/MNI_MDTB_10Regions.nii`. This will create a .nii.gz file (what is included in the directory here)
+In this directory type in terminal: `gzip ./esfmri_connectivity/parcellation/cerebellum/MNI_MDTB_10Regions.nii`. This will create a .nii.gz file (what is included in the directory here)
 
 ## Step 3: Create templateflow name
 
 Create a filename compatible with templateflow's naming structure:
 
-`cp ./parcellation/cerebellum/MNI_MDTB_10Regions.nii.gz ./parcellation/cerebellum/tpl-MNI152NLin6Asym_res-01_atlas-King2019Cerebellum_dseg.nii.gz`
+`cp ./esfmri_connectivity/parcellation/cerebellum/MNI_MDTB_10Regions.nii.gz ./esfmri_connectivity/parcellation/cerebellum/tpl-MNI152NLin6Asym_res-01_atlas-King2019Cerebellum_dseg.nii.gz`
 
 ## Step 4: Create metadata
 
 The file:
 
-`./parcellation/cerebellum/tpl-MNI152NLin6Asym_res-01_atlas-King2019Cerebellum_dseg.tsv`
+`./esfmri_connectivity/parcellation/cerebellum/tpl-MNI152NLin6Asym_res-01_atlas-King2019Cerebellum_dseg.tsv`
 
 Was created manually using the information in the above cited article, and [this figure](http://www.diedrichsenlab.org/imaging/Pics/MDTB_parcellation.png). It contains the meta information for the different ROIs.
 
@@ -38,10 +38,10 @@ Run the python script in a docker container. Make sure you are in the main direc
 
 ```bash
 docker build ./ -t esfmri
-docker run -u `id -u` -v $(pwd):/home/esfmri/ -t esfmri python parcellation/cerebellum/reref_fromfsl_to_mni2009c.py
+docker run -u `id -u` -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.parcellation.cerebellum.reref_mniNLin6_to_mni2009c.py
 ```
 
-This will create the file: `./parcellation/cerebellum/tpl-MNI152NLin2009cAsym_res-01_atlas-King2019Cerebellum_dseg.nii.gz`
+This will create the file: `./esfmri_connectivity/parcellation/cerebellum/tpl-MNI152NLin2009cAsym_res-01_atlas-King2019Cerebellum_dseg.nii.gz`
 
 Finally, copy the metadata from MNI152NLin6Asym to MNI152NLin2009cAsym. It is the same information, but good to update the tpl key/value pair:
 
