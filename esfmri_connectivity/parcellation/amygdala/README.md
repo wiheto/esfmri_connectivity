@@ -4,7 +4,7 @@
 
 Tyszka, J. M. & Pauli, W. M. (2016) [In vivo delineation of subdivisions of the human amygdaloid complex in a high-resolution group template](https://onlinelibrary.wiley.com/doi/abs/10.1002/hbm.23289). Human Brain Mapping. 37, 3979–3998
 
-The amygdala atlas files are shared under the [CC-By Attribution 4.0 International]https://creativecommons.org/licenses/by/4.0/) and this licence applies to them here. Read more info [here](https://osf.io/hksa6/)
+The amygdala atlas files are shared under the [CC-By Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/) and this licence applies to them here. Read more info [here](https://osf.io/hksa6/)
 
 ## How to recreate the files in this directory
 
