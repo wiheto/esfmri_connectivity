@@ -22,7 +22,7 @@ Save both these files into this directory.
 
 Create a filename compatible with templateflow's naming structure:
 
-`docker run -u `id -u` -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.parcellation.amygdala.combine_rois`
+`docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.parcellation.amygdala.combine_rois`
 
 This file uses the probabilistic Amygdala atlas and creates 3 discrete ROIs. It also exports the metainfo.
 
@@ -30,7 +30,7 @@ This file uses the probabilistic Amygdala atlas and creates 3 discrete ROIs. It 
 
 We will then convert the Amygdala atlas into MNI152NLin2009cAsym and give it a templateflow-like name:
 
-`docker run -u `id -u` -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.parcellation.amygdala.reref_mniNLin6_to_mni2009c`
+`docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.parcellation.amygdala.reref_mniNLin6_to_mni2009c`
 
 This will create:
 

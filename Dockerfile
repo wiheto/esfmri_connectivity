@@ -29,6 +29,7 @@ RUN pip install templateflow==0.4.1
 RUN pip install nipype==1.3.0-rc1
 RUN pip install nibabel==2.2.
 # add user and create a default working directory
+RUN useradd -ms /bin/bash esfmri
 WORKDIR /home/esfmri
-ENV HOME="/home/esfmri"
+#ENV HOME="/home/esfmri"
 
