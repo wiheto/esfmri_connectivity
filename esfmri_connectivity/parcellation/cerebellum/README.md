@@ -36,10 +36,7 @@ Was created manually using the information in the above cited article, and [this
 
 Run the python script in a docker container. Make sure you are in the main directory of this repo.
 
-```bash
-docker build ./ -t esfmri
-docker run -u `id -u` -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.parcellation.cerebellum.reref_mniNLin6_to_mni2009c.py
-```
+`docker run -u `id -u` -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.parcellation.cerebellum.reref_mniNLin6_to_mni2009c`
 
 This will create the file: `./esfmri_connectivity/parcellation/cerebellum/tpl-MNI152NLin2009cAsym_res-01_atlas-King2019Cerebellum_dseg.nii.gz`
 
