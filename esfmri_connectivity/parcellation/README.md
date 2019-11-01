@@ -3,10 +3,10 @@
 
 A custom parcellation is made using:
 
-1. Schaeffer 400 cortical parcellation
-2. Oxford Harvard subcortical
-3. 3 ROI Amygdala atlas
-4. 10 ROI Cerbebellum atlas
+1.  Schaeffer 400 cortical parcellation
+2.  Oxford Harvard subcortical
+3.  3 ROI Amygdala atlas
+4.  10 ROI cerbebellum atlas
 
 In each folder you will find how 2-4 is created. Number 1 is pulled directly from templateflow.
 
