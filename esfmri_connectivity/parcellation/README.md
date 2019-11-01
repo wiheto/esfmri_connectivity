@@ -1,7 +1,6 @@
+# Frankenstein Parcellation
 
-## Parcellation
-
-A custom parcellation is made using:
+A custom parcellation (aka Frankenstein) is made using:
 
 1.  Schaeffer 400 cortical parcellation
 2.  Oxford Harvard subcortical
