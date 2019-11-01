@@ -28,8 +28,6 @@ def get_files(bids_dir, fmriprep_dir, qa_path, pipeline=None, forceonehit=True):
                 pass
             elif sub not in bad_subs:
                 task, run = taskrun.split('_')
-                print(task)
-                print(run)
                 l1 = len(filepaths)
                 toremove = list(filter(lambda x : sub in x and run in x and task in x, filepaths))
                 if len(toremove) > 1 and forceonehit:
@@ -40,8 +38,6 @@ def get_files(bids_dir, fmriprep_dir, qa_path, pipeline=None, forceonehit=True):
                 else:
                     _ = [filepaths.remove(r) for r in toremove]
                     l2 = len(filepaths)
-                    print(l1)
-                    print(l2)
                     # Checks to make sure a file is removed and only one file
                     if l1 == l2:
                         raise ValueError('No run removes')
