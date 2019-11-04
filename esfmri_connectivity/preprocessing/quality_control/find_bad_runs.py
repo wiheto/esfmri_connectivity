@@ -8,12 +8,13 @@ qa_dir = './esfmri_connectivity/preprocessing/quality_control/'
 layout = bids.BIDSLayout(bids_dir)
 layout.add_derivatives(bids_dir + fmriprep_dir)
 
-# Loop over subjects cause pybids seems to have some memory issues to grab the tsvs at once. 
+# Loop over subjects cause pybids seems to have some memory issues to grab the tsvs at once.
 fmriprep_qa = pd.read_csv(qa_dir + 'fmriprep_evaluation.tsv', sep='\t')
-subs = fmriprep_qa['sub'].values 
+subs = fmriprep_qa['sub'].values
 bad_runs = []
 for s in subs:
-    subfiles = layout.get(scope='fMRIPrep', subject=s.split('-')[1], desc='confounds', suffix='regressors', extension='tsv', return_type='file')
+    subfiles = layout.get(scope='fMRIPrep', subject=s.split(
+        '-')[1], desc='confounds', suffix='regressors', extension='tsv', return_type='file')
     for f in subfiles:
         confounds = pd.read_csv(f, sep='\t')
         if confounds['framewise_displacement'].mean() > 0.5:
