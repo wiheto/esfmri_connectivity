@@ -4,7 +4,7 @@ import pandas as pd
 # Utilizing pybids to get all files that are marked as "good"
 
 
-def get_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/preprocessing/quality_control/', pipeline=None, forceonehit=True):
+def get_preproc_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/preprocessing/quality_control/', pipeline=None, forceonehit=True):
 
     qa = pd.read_csv(qa_path + 'fmriprep_evaluation.tsv', sep='\t')
     bad_subs = qa['sub'][qa['use'] == 0].values
@@ -20,6 +20,8 @@ def get_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/preprocessi
 
     # remove all bad subjects
     filepaths = [n.dirname + '/' + n.filename for n in get_all]
+    # make sure bold is in the name (cant be in lay due to fmridenoise)
+    filepaths = [f for f in filepaths if 'bold' in f]
     for bs in bad_subs:
         filepaths = list(filter(lambda x: bs not in x, filepaths))
     if pipeline is not None:
@@ -51,7 +53,8 @@ def get_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/preprocessi
                         raise ValueError('More than one run removed')
 
     # remove all bad runs with high movement
-    filepaths = list(filter(lambda x: not any(filter(
-        lambda y: x in y, bad_runs_movement['high_movement_runs'].values)), filepaths))
+    bad_runs_hm = list(bad_runs_movement['high_movement_runs'].values)
+    filepaths = list(filter(lambda x: not any(list(filter(
+        lambda y: y in x, bad_runs_hm))), filepaths))
 
     return filepaths
