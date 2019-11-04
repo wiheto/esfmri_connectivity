@@ -20,5 +20,5 @@ for s in subs:
         if confounds['framewise_displacement'].mean() > 0.5:
             bad_runs.append(f.split('func')[1][1:].split('desc')[0][:-1])
 
-bad_runs = pd.DataFrame(bad_runs)
+bad_runs = pd.DataFrame(data={'high_movement_runs': bad_runs})
 bad_runs.to_csv(qa_dir + 'bad_runs.tsv', sep='\t')
