@@ -7,7 +7,7 @@ import os
 
 def plot_fitted_gm(data, predicted_gm, ax=None, points=10000, plot_resolution=100, plot_threshold=True, title=None):
     """
-    Function plots the predicted class of the GMM model 
+    Function plots the predicted class of the GMM model
     """
     if title is None:
         title = ''
