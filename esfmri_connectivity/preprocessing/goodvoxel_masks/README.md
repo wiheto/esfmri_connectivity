@@ -28,7 +28,7 @@ We evaluated each of these figures and chose that having 4 Gaussians and taking 
 
 Then, to create a unique mask for each subject, we ran:
 
-docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.preprocessing.goodvoxel_masks.create_mask
+`docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.preprocessing.goodvoxel_masks.create_mask`
 
 This will create the masked frankenstein atlas in `masks` for each subject. Voxels that are marked as "bad" are not included in the parcellation. If 50% of the voxels are marked as bad, the parcel is removed. This also creates a `parceldelete_report.tsv` saying how many parcels were deleted from each subject/task combo.
 
