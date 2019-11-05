@@ -28,6 +28,7 @@ RUN pip install leidenalg==0.7.0
 RUN pip install templateflow==0.4.1
 RUN pip install nipype==1.3.0-rc1
 RUN pip install nibabel==2.2.
+RUN pip install nilearn==0.6.0a0
 # add user and create a default working directory
 RUN useradd -ms /bin/bash esfmri
 WORKDIR /home/esfmri
