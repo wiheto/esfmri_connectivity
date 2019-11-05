@@ -1,0 +1,11 @@
+{
+    "Name": "fMRIDenoise",
+    "BIDSVersion": "1.1.1",
+    "PipelineDescription": {
+        "Name": "fMRIDenoise",
+        "Version": "0.1.5",
+        "CodeURL": "https://github.com/nbraingroup/fmridenoise"
+    },
+    "CodeURL": "https://github.com/nbraingroup/fmridenoise"
+}
+
