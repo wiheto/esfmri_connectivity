@@ -34,7 +34,7 @@ for f in files:
     bady = ind[1][~goodvoxels]
     badz = ind[2][~goodvoxels]
     maskparc = parcdata.copy()
-    maskparc[badx, bady, badz] = np.nan
+    maskparc[badx, bady, badz] = 0
 
     # Step 2, check how much of each parcel remains.
     n = 0
@@ -43,7 +43,7 @@ for f in files:
         inmask = np.sum(maskparc == parcel)
         intemplate = np.sum(parcdata == parcel)
         if (inmask/intemplate) < 0.5:
-            maskparc[maskparc == parcel] = np.nan
+            maskparc[maskparc == parcel] = 0
             n += 1
             parcinmask.append(0)
         else:
