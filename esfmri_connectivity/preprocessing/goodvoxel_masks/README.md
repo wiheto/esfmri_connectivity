@@ -1,4 +1,4 @@
-# Masking of es-fmri data.
+# Masking of es-fmri data
 
 The purpose of this repo is to take the "frankenstein" atlas in the parcellation subdirectory and apply it to each subject.
 

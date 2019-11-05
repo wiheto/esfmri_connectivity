@@ -1,5 +1,4 @@
 import nibabel as nib
-from nilearn.image.resampling import resample_to_img
 from sklearn.mixture import GaussianMixture
 import numpy as np
 import pandas as pd
