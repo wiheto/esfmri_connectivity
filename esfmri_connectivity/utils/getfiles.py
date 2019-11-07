@@ -1,8 +1,26 @@
 import bids
 import pandas as pd
-
+import os
 # Utilizing pybids to get all files that are marked as "good"
 
+def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', censored=True, group=None):
+    files = os.listdir(timeseries_dir)
+    if censored == True:
+        files = [timeseries_dir + '/' + f for f in files if 'fdcensored' in f]
+    else:
+        files = [timeseries_dir + '/' + f for f in files if 'fdcensored' not in f]
+    if group == 'subtask':
+        pairings = [('sub-' + f.split('/')[-1].split('sub-')[1].split('_')[0], 'task-' + f.split('/')[-1].split('task-')[1].split('_')[0]) for f in files]
+        pairings = list(set(pairings))
+        files_col = []
+        labels = []
+        for p in pairings:
+            files_col.append([f for f in files if p[0] in f and p[1] in f])
+            labels.append('_'.join(p))
+        files = files_col
+        return files, labels
+    else:
+        return files
 
 def get_preproc_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/preprocessing/quality_control/', pipeline=None, forceonehit=True):
 
