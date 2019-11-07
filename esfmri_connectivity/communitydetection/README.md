@@ -1,6 +1,6 @@
 # Community detection
 
-Community detection was done with the Leiden algorithem ([Traag et al 2018](https://arxiv.org/abs/1810.084730)) using Reichardt & Bornholdt ([2006](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.74.016110)) null model (RBConfigurationVertexPartition). Only positive edges used. The resolution parameter was determined based on the adjusted multual information between the cortical parcels and the Yeo 7 network template ([Yeo et al 2012](https://www.physiology.org/doi/abs/10.1152/jn.00338.2011)).
+Community detection was done with the Leiden algorithm ([Traag et al 2018](https://arxiv.org/abs/1810.084730)) using Reichardt & Bornholdt ([2006](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.74.016110)) null model (RBConfigurationVertexPartition). Only positive edges used. The resolution parameter was determined based on the adjusted mutual information between the cortical parcels and the Yeo 7 network template ([Yeo et al 2012](https://www.physiology.org/doi/abs/10.1152/jn.00338.2011)).
 
 ## Contents of directory
 
