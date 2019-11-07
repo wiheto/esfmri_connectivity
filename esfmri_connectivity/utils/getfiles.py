@@ -1,16 +1,20 @@
 import bids
 import pandas as pd
 import os
-# Utilizing pybids to get all files that are marked as "good"
+import nibabel as nib
+import numpy as np
+
 
 def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', censored=True, group=None):
     files = os.listdir(timeseries_dir)
     if censored == True:
         files = [timeseries_dir + '/' + f for f in files if 'fdcensored' in f]
     else:
-        files = [timeseries_dir + '/' + f for f in files if 'fdcensored' not in f]
+        files = [timeseries_dir + '/' +
+                 f for f in files if 'fdcensored' not in f]
     if group == 'subtask':
-        pairings = [('sub-' + f.split('/')[-1].split('sub-')[1].split('_')[0], 'task-' + f.split('/')[-1].split('task-')[1].split('_')[0]) for f in files]
+        pairings = [('sub-' + f.split('/')[-1].split('sub-')[1].split('_')[0],
+                     'task-' + f.split('/')[-1].split('task-')[1].split('_')[0]) for f in files]
         pairings = list(set(pairings))
         files_col = []
         labels = []
@@ -21,6 +25,7 @@ def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', censored=T
         return files, labels
     else:
         return files
+
 
 def get_preproc_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/preprocessing/quality_control/', pipeline=None, forceonehit=True):
 
@@ -76,3 +81,57 @@ def get_preproc_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/pre
         lambda y: y in x, bad_runs_hm))), filepaths))
 
     return filepaths
+
+
+def get_events(bids_dir, subject, run, reject=5, return_type='block'):
+    """
+    Returns the index of stim on and stim off time periods.
+    Should pass a subject and run that returns a unique file.
+    Reject variable is the number of seconds at the start of each block that are removed.
+    return_type can be block or run.
+    """
+    layout = bids.BIDSLayout(bids_dir)
+    # Get both events and images, check there is only one of each
+    events = layout.get(suffix='events', extension='.tsv', session='postop',
+                        return_type='file', subject=subject, run=int(run))
+    images = layout.get(suffix='bold', extension='.nii.gz', session='postop',
+                        return_type='file', subject=subject, run=int(run))
+    if (len(events) != len(images)) and (len(events) != 1):
+        raise ValueError(
+            'Different number of events, json, or image files found.')
+    # load events and image
+    ev = pd.read_csv(events[0], sep='\t')
+    img = nib.load(images[0])
+    # Get the tr
+    tr = img.header.get_zooms()[-1]
+    # How many seconds to delete from each of the "blocks/trials"
+    delete_from_start = np.ceil(reject/tr)
+    seconds = np.arange(0, img.shape[-1]*tr, tr)
+    # Define stim on and stim off periods in seconds
+    stimon = np.sort(
+        np.array(list(set(seconds).intersection(ev['onset'].round()))))
+    stimoff = np.sort(
+        np.array(list(set(seconds).difference(ev['onset'].round()))))
+    # Fine where the stimulation is greater than the tr to find where a block ends
+    lps = np.where(np.diff(stimon) > tr)[0]
+    lastpoints = [lps + lp for lp in np.arange(1, 1+delete_from_start)]
+    lastpoints.append(np.arange(delete_from_start))
+    to_delete = np.sort(np.concatenate(lastpoints))
+    delstimon = np.delete(stimon, to_delete.astype(int))
+    # Do same for stim off
+    lps = np.where(np.diff(stimoff) > tr)[0]
+    lastpoints = [lps + lp for lp in np.arange(1, 1+delete_from_start)]
+    lastpoints.append(np.arange(delete_from_start))
+    to_delete = np.sort(np.concatenate(lastpoints))
+    delstimoff = np.delete(stimoff, to_delete.astype(int))
+    # Convert back to frames
+    stimon_frames = (delstimon/tr).astype(int)
+    stimoff_frames = (delstimoff/tr).astype(int)
+    # If return per block, split up into list of multiple arrays
+    if return_type == 'block':
+        stimon_frames = np.split(stimon_frames, np.where(
+            np.diff(stimon_frames) > 1)[0]+1)
+        stimoff_frames = np.split(stimoff_frames, np.where(
+            np.diff(stimoff_frames) > 1)[0]+1)
+
+    return stimon_frames, stimoff_frames
