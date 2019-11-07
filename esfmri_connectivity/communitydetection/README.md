@@ -5,8 +5,11 @@ Community detection was done with the Leiden algorithem ([Traag et al 2018](http
 ## Contents of directory
 
 __run_communitydetection.py__ creates all the contents of this directory.
+
 __best_resolution_parametrs.tsv__ tabular file containing all the largest adjusted mutual information value for each subtask combination.
+
 __./ami_figures__ contains the adjusted mutual information for each subtask combination for different settings of the resolution parameter.
+
 __./data__ contains the community partition of each subtask.
 
 ## To replicate
