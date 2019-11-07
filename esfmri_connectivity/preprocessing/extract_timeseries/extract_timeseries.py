@@ -27,7 +27,7 @@ for f in files:
     sname += '_timeseries.tsv'
     scrubbed_sname = sname.split('_timeseries')[0]
     scrubbed_sname += '_desc-fdcensored_timeseries.tsv'
-    if not os.path.exists(save_path + scrubbed_sname): 
+    if not os.path.exists(save_path + scrubbed_sname):
         maskfile = mask_path + sub + '_' + task + \
             '_tpl-MNI152NLin2009cAsym_res-02_atlas-frankenstein_dseg.nii.gz'
         maskinfo = pd.read_csv(mask_path + sub + '_' + task +
