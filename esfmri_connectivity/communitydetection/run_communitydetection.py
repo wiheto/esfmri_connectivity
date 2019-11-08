@@ -19,6 +19,7 @@ for fi, filecol in enumerate(files):
     # Make pearson correlations over all runs for each subject/task
     ts = pd.concat(ts)
     ts.reset_index(inplace=True, drop=True)
+    parcel_indices = ts.columns
     g = ts.corr().values
     # Make igrpah variable, make negative connections 0
     g[g < 0] = 0
@@ -62,7 +63,8 @@ for fi, filecol in enumerate(files):
     r = searchspace[best_score]
     part = leidenalg.find_partition(G, leidenalg.RBConfigurationVertexPartition, **{
                                     'resolution_parameter': r, 'n_iterations': -1, 'seed': 2019})
-    np.save(save_path + 'data/' +  savelabels[fi] + '_communities.npy', np.array(part.membership))
+    df = pd.DataFrame(data={'communities': part.membership}, index=parcel_indices)
+    df.to_csv(save_path + 'data/' +  savelabels[fi] + '_communities.tsv', sep='\t')
     chosen_resolution.append(r)
 
 df = pd.DataFrame(data={'subtask': savelabels, 'resolution': chosen_resolution})

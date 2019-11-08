@@ -5,13 +5,15 @@ import nibabel as nib
 import numpy as np
 
 
-def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', censored=True, group=None):
+def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', task=None, censored=True, group=None):
     files = os.listdir(timeseries_dir)
     if censored == True:
         files = [timeseries_dir + '/' + f for f in files if 'fdcensored' in f]
     else:
         files = [timeseries_dir + '/' +
                  f for f in files if 'fdcensored' not in f]
+    if task is not None: 
+        files = [f for f in files if task in f]
     if group == 'subtask':
         pairings = [('sub-' + f.split('/')[-1].split('sub-')[1].split('_')[0],
                      'task-' + f.split('/')[-1].split('task-')[1].split('_')[0]) for f in files]
@@ -120,8 +122,8 @@ def get_events(bids_dir, subject, run, reject=5, return_type='block'):
     delstimon = np.delete(stimon, to_delete.astype(int))
     # Do same for stim off
     lps = np.where(np.diff(stimoff) > tr)[0]
-    lastpoints = [lps + lp for lp in np.arange(1, 1+delete_from_start)]
-    lastpoints.append(np.arange(delete_from_start))
+    lastpoints = [lps + lp for lp in np.arange(1, 2+delete_from_start)]
+    lastpoints.append(np.arange(delete_from_start+1))
     to_delete = np.sort(np.concatenate(lastpoints))
     delstimoff = np.delete(stimoff, to_delete.astype(int))
     # Convert back to frames
