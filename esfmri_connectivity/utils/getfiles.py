@@ -7,12 +7,12 @@ import numpy as np
 
 def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', task=None, censored=True, group=None):
     files = os.listdir(timeseries_dir)
-    if censored == True:
+    if censored:
         files = [timeseries_dir + '/' + f for f in files if 'fdcensored' in f]
     else:
         files = [timeseries_dir + '/' +
                  f for f in files if 'fdcensored' not in f]
-    if task is not None: 
+    if task is not None:
         files = [f for f in files if task in f]
     if group == 'subtask':
         pairings = [('sub-' + f.split('/')[-1].split('sub-')[1].split('_')[0],
@@ -69,7 +69,7 @@ def get_preproc_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/pre
                     # Some derivatives files manually deleted due to get fmridenoise to run
                     pass
                 else:
-                    _ = [filepaths.remove(r) for r in toremove]
+                    [filepaths.remove(r) for r in toremove]
                     l2 = len(filepaths)
                     # Checks to make sure a file is removed and only one file
                     if l1 == l2:
