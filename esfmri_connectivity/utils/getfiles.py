@@ -69,7 +69,8 @@ def get_preproc_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/pre
                     # Some derivatives files manually deleted due to get fmridenoise to run
                     pass
                 else:
-                    [filepaths.remove(r) for r in toremove]
+                    for r in toremove:
+                        filepaths.remove(r)
                     l2 = len(filepaths)
                     # Checks to make sure a file is removed and only one file
                     if l1 == l2:
