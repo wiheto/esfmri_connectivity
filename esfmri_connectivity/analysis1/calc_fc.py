@@ -1,8 +1,5 @@
-import numpy as np
 import pandas as pd
 from esfmri_connectivity.utils.getfiles import get_timeseries, get_events
-from plotje import styler
-import matplotlib.pyplot as plt
 import bct
 com_path = './esfmri_connectivity/communitydetection/data/'
 bids_dir = '/home/william/sherlock/scratch/data/esfmri/'
@@ -29,7 +26,7 @@ for fi, filecol in enumerate(files):
     ts_eson.reset_index(inplace=True, drop=True)
     ts_esoff = pd.concat(ts_esoff)
     ts_esoff.reset_index(inplace=True, drop=True)
-    
+
     parcel_index = ts_eson.columns
     # Load communities
     com = pd.read_csv(com_path + savelabels[fi] + '_communities.tsv', sep='\t', index_col=[0])
