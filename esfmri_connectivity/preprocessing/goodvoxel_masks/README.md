@@ -1,6 +1,6 @@
 # Masking of es-fmri data
 
-The purpose of this repo is to take the "frankenstein" atlas in the parcellation subdirectory and apply it to each subject.
+The purpose of this repo is to take the "smörgåsbord" atlas in the parcellation subdirectory and apply it to each subject.
 
 Since there is considerable dropout, we first select voxels which we decide to keep. Here is an example of the output we create from this:
 
@@ -10,7 +10,7 @@ Here we see the remaining parcellation after the mask has been applied.
 
 ## To replicate
 
-To create our steps this you will need to change line 9 in `create_avgvoxdist` and specify where the BIDS directory of the esfMRI data is.
+To create our steps this you will need to change line 9 in `create_avgvoxdist.py` and specify where the BIDS directory of the esfMRI data is.
 
 To replicate the exact steps we did, we ran this in a singularity container. We did:
 
@@ -30,6 +30,6 @@ Then, to create a unique mask for each subject, we ran:
 
 `docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.preprocessing.goodvoxel_masks.create_mask`
 
-This will create the masked frankenstein atlas in `masks` for each subject. Voxels that are marked as "bad" are not included in the parcellation. If 50% of the voxels are marked as bad, the parcel is removed. This also creates a `parceldelete_report.tsv` saying how many parcels were deleted from each subject/task combo.
+This will create the masked smörgåsbord atlas in `masks` for each subject. Voxels that are marked as "bad" are not included in the parcellation. If 50% of the voxels are marked as bad, the parcel is removed. This also creates a `parceldelete_report.tsv` saying how many parcels were deleted from each subject/task combo.
 
 The final contents of this, are example.png and example.svg which were manually made by looking at two different subjects to see how well the parcellation overlaps with a single volume of the BOLD data.

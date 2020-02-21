@@ -29,9 +29,9 @@ for f in files:
     scrubbed_sname += '_desc-fdcensored_timeseries.tsv'
     if not os.path.exists(save_path + scrubbed_sname):
         maskfile = mask_path + sub + '_' + task + \
-            '_tpl-MNI152NLin2009cAsym_res-02_atlas-frankenstein_dseg.nii.gz'
+            '_tpl-MNI152NLin2009cAsym_res-02_atlas-smorgasbord_dseg.nii.gz'
         maskinfo = pd.read_csv(mask_path + sub + '_' + task +
-                            '_tpl-MNI152NLin2009cAsym_res-02_atlas-frankenstein_dseg.tsv', sep='\t', index_col=0)
+                            '_tpl-MNI152NLin2009cAsym_res-02_atlas-smorgasbord_dseg.tsv', sep='\t', index_col=0)
         mask = NiftiLabelsMasker(maskfile)
         timeseries = mask.fit_transform(f)
         if maskinfo['inmask'].sum() != timeseries.shape[1]:

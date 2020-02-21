@@ -19,12 +19,12 @@ task = [f.split('task-')[1].split('_')[0] for f in files]
 task = list(np.unique(task))
 
 
-# Resample frankenstein atlas to make it correct resolution of data
+# Resample smorgasbord atlas to make it correct resolution of data
 parc = nib.load(
-    './esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-01_atlas-frankenstein_dseg.nii.gz')
+    './esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-01_atlas-smorgasbord_dseg.nii.gz')
 exfunc = nib.load(files[0])
 rsparc = resample_to_img(parc, exfunc, interpolation='nearest')
-nib.save(rsparc, './esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-02_atlas-frankenstein_dseg.nii.gz')
+nib.save(rsparc, './esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-02_atlas-smorgasbord_dseg.nii.gz')
 
 parcdata = rsparc.get_data()
 ind = np.where(parcdata != 0)
