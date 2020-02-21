@@ -28,7 +28,7 @@ for fi, filecol in enumerate(files):
     G.vs['label'] = list(ts.index)
     # Load template and turn names of cortex into community vector
     template = pd.read_csv(
-        'esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-01_atlas-frankenstein_dseg.tsv', sep='\t', index_col=[0])
+        'esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-01_atlas-smorgasbord_dseg.tsv', sep='\t', index_col=[0])
     cortex = template[template.index <= 400]
     namelist = {}
     template_community = []

@@ -82,14 +82,14 @@ info_amygdala.index += 600
 
 
 
-data_frank = data_mod['cortex'].copy()
-data_frank += data_mod['amygdala']
-data_frank += data_mod['cerebellum']
-data_frank += data_mod['subcortical']
+data_smor = data_mod['cortex'].copy()
+data_smor += data_mod['amygdala']
+data_smor += data_mod['cerebellum']
+data_smor += data_mod['subcortical']
 
-img_frank = nib.Nifti1Image(data_frank, img_cortex.affine)
-savename = 'tpl-MNI152NLin2009cAsym_res-01_atlas-frankenstein_dseg'
-nib.save(img_frank, rel_path + savename + '.nii.gz')
+img_smor = nib.Nifti1Image(data_smor, img_cortex.affine)
+savename = 'tpl-MNI152NLin2009cAsym_res-01_atlas-smorgasbord_dseg'
+nib.save(img_smor, rel_path + savename + '.nii.gz')
 
-info_frank = pd.concat([info_cortex, info_cerebellum, info_subcortical, info_amygdala], sort=True)
-info_frank.to_csv(rel_path + savename + '.tsv', sep='\t')
+info_smor = pd.concat([info_cortex, info_cerebellum, info_subcortical, info_amygdala], sort=True)
+info_smor.to_csv(rel_path + savename + '.tsv', sep='\t')

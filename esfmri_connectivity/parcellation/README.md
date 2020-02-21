@@ -1,6 +1,6 @@
-# Frankenstein Parcellation
+# Smörgåsbord Parcellation
 
-A custom parcellation (aka Frankenstein) is made using:
+A custom parcellation (aka Smörgåsbord) is made using:
 
 1.  Schaeffer 400 cortical parcellation
 2.  Oxford Harvard subcortical
@@ -13,15 +13,15 @@ To fully replicate the analyses from scratch, you need to perform all the steps 
 
 ## Directory contents
 
-This folder contains the "Frankenstein" atlas that we created for this analysis (because we merged multiple atlases).
+This folder contains the "Smörgåsbord" atlas that we created for this analysis (because we merged multiple atlases).
 
 The atlas label file:
 
-`tpl-MNI152NLin2009cAsym_res-01_atlas-frankenstein_dseg.nii.gz`
+`tpl-MNI152NLin2009cAsym_res-01_atlas-smorgasbord_dseg.nii.gz`
 
 The information about the parcels:
 
-`tpl-MNI152NLin2009cAsym_res-01_atlas-frankenstein_dseg.tsv`
+`tpl-MNI152NLin2009cAsym_res-01_atlas-smorgasbord_dseg.tsv`
 
 And to recreate these files you need:
 

@@ -4,11 +4,11 @@ import numpy as np
 import pandas as pd
 import os
 parc = nib.load(
-    './esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-02_atlas-frankenstein_dseg.nii.gz')
+    './esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-02_atlas-smorgasbord_dseg.nii.gz')
 parcdata = parc.get_data()
 
 parcinfo = pd.read_csv(
-    './esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-01_atlas-frankenstein_dseg.tsv', sep='\t', index_col=[0])
+    './esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-01_atlas-smorgasbord_dseg.tsv', sep='\t', index_col=[0])
 
 rel_dir = './esfmri_connectivity/preprocessing/goodvoxel_masks/'
 
@@ -55,9 +55,9 @@ for f in files:
     # Save output
     maskimg = nib.Nifti1Image(maskparc, parc.affine)
     nib.save(maskimg, rel_dir + 'masks/' + f.split('_voxdist')
-             [0] + '_tpl-MNI152NLin2009cAsym_res-02_atlas-frankenstein_dseg.nii.gz')
+             [0] + '_tpl-MNI152NLin2009cAsym_res-02_atlas-smorgasbord_dseg.nii.gz')
     maskinfo.to_csv(rel_dir + 'masks/' + f.split('_voxdist')
-                    [0] + '_tpl-MNI152NLin2009cAsym_res-02_atlas-frankenstein_dseg.tsv', sep='\t')
+                    [0] + '_tpl-MNI152NLin2009cAsym_res-02_atlas-smorgasbord_dseg.tsv', sep='\t')
     s, t, _ = f.split('_')
     sub.append(s)
     task.append(t)
