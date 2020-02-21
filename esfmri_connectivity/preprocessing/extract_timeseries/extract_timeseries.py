@@ -40,7 +40,6 @@ for f in files:
         timeseries = pd.DataFrame(timeseries.transpose(
         ), index=maskinfo[maskinfo['inmask'] == 1].index)
         timeseries.to_csv(save_path + sname, sep='\t')
-
         confounds = layout.get(scope='fMRIPrep', subject=sub.split('-')[1], task=task.split('-')[1], run=int(
             f.split('run-')[1].split('_')[0]), desc='confounds', suffix='regressors', extension='tsv', return_type='file')
         if len(confounds) != 1:
