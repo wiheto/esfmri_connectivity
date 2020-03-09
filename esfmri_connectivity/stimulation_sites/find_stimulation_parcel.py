@@ -1,8 +1,7 @@
 import nibabel as nib
 import pandas as pd
 from esfmri_connectivity.utils.getfiles import get_timeseries
-import numpy as np 
-from nilearn.input_data import NiftiSpheresMasker
+import numpy as np
 
 parc = nib.load('esfmri_connectivity/parcellation/tpl-MNI152NLin2009cAsym_res-01_atlas-smorgasbord_dseg.nii.gz')
 stiminfo = pd.read_csv('./esfmri_connectivity/stimulation_sites/stimulation_infomation_space-MNI152NLin2009cAsym.tsv', sep='\t')
@@ -11,7 +10,7 @@ timeseries = get_timeseries(task='postop', require_stiminfo=True)
 
 stim_center_mni = []
 stim_center_xyz = []
-for t in timeseries: 
+for t in timeseries:
     sub = int(t.split('sub-')[1].split('_')[0])
     run = int(t.split('run-')[1].split('_')[0])
     # UNCLEAR IN PREREG
@@ -30,7 +29,7 @@ def sphere(shape, radius, position):
     # assume shape and position are both a 3-tuple of int or float
     # the units are pixels / voxels (px for short)
     # radius is a int or float in px
-    
+
     semisizes = (radius,) * 3
 
     # genereate the grid for the support points
@@ -48,13 +47,13 @@ def sphere(shape, radius, position):
 # get_parcellation data
 parc_data = parc.get_fdata()
 
-best_roi = [] 
+best_roi = []
 good_roi = []
 sub = []
 run = []
 # DEVIATION FROM PREREG
 # This was increased to 6 instead of 3 so all had some non-0 voxels.
-# If this is less than 6, an error will occur as some subjects will have 0 throughout the sphere. 
+# If this is less than 6, an error will occur as some subjects will have 0 throughout the sphere.
 # Expanding the ROI seems to make sense, as multiple transforms have been applied and the centre of the roi is the middle of the two channels
 
 roi_radius = 6
@@ -73,7 +72,7 @@ for i, xyz in enumerate(stim_center_xyz):
     # Find the parcel that overlaps the most
     best_roi.append(v[np.argmax(c)])
     #Check if stimulate parcel is in time series for subject
-    if (v[np.argmax(c)] in t.index): 
+    if (v[np.argmax(c)] in t.index):
         good_roi.append(True)
     else:
         good_roi.append(False)
