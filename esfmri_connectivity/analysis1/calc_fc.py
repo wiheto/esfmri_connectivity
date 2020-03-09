@@ -1,7 +1,6 @@
 import pandas as pd
 from esfmri_connectivity.utils.getfiles import get_timeseries, get_events
 import bct
-import os
 
 com_path = './esfmri_connectivity/communitydetection/data/'
 bids_dir = '/home/william/sherlock/scratch/data/esfmri/'
