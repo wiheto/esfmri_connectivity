@@ -20,6 +20,7 @@ for fi, filecol in enumerate(files):
     ts = pd.concat(ts)
     ts.reset_index(inplace=True, drop=True)
     parcel_indices = ts.columns
+    # Make connectivity matrices
     g = ts.corr().values
     # Make igrpah variable, make negative connections 0
     g[g < 0] = 0
