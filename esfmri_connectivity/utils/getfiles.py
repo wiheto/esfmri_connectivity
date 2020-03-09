@@ -17,7 +17,7 @@ def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', task=None,
     if require_stiminfo:
         files_col = []
         stiminfo = pd.read_csv('./esfmri_connectivity/stimulation_sites/stimulation_infomation_space-MNI152NLin2009cAsym.tsv', sep='\t')
-        for f in files: 
+        for f in files:
             sub = int(f.split('sub-')[1].split('_')[0])
             run = int(f.split('run-')[1].split('_')[0])
             if len(stiminfo[(stiminfo['subject']==sub) & (stiminfo['run']==run)]) > 0:
@@ -120,7 +120,7 @@ def get_events(bids_dir, subject, run, reject=5, return_type='block'):
     delete_from_start = np.ceil(reject/tr)
     seconds = np.arange(0, img.shape[-1]*tr, tr)
     # sometimes a rounding error of ~0.1 seconds occured, so align the events with closest scan
-    if any(np.abs(seconds-ev['onset'].iloc[0]) != 0): 
+    if any(np.abs(seconds-ev['onset'].iloc[0]) != 0):
         closestsec = np.argmin(np.abs(seconds-ev['onset'].iloc[0]))
         dif = ev['onset'].iloc[0] - seconds[closestsec]
         seconds = seconds + dif
