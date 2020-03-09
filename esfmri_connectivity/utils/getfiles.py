@@ -5,7 +5,7 @@ import nibabel as nib
 import numpy as np
 
 
-def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', task=None, censored=True, group=None):
+def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', task=None, censored=True, group=None, require_stiminfo=False):
     files = os.listdir(timeseries_dir)
     if censored:
         files = [timeseries_dir + '/' + f for f in files if 'fdcensored' in f]
@@ -14,6 +14,15 @@ def get_timeseries(timeseries_dir='./esfmri_connectivity/timeseries', task=None,
                  f for f in files if 'fdcensored' not in f]
     if task is not None:
         files = [f for f in files if task in f]
+    if require_stiminfo:
+        files_col = []
+        stiminfo = pd.read_csv('./esfmri_connectivity/stimulation_sites/stimulation_infomation_space-MNI152NLin2009cAsym.tsv', sep='\t')
+        for f in files: 
+            sub = int(f.split('sub-')[1].split('_')[0])
+            run = int(f.split('run-')[1].split('_')[0])
+            if len(stiminfo[(stiminfo['subject']==sub) & (stiminfo['run']==run)]) > 0:
+                files_col.append(f)
+        files = files_col
     if group == 'subtask':
         pairings = [('sub-' + f.split('/')[-1].split('sub-')[1].split('_')[0],
                      'task-' + f.split('/')[-1].split('task-')[1].split('_')[0]) for f in files]
@@ -110,6 +119,13 @@ def get_events(bids_dir, subject, run, reject=5, return_type='block'):
     # How many seconds to delete from each of the "blocks/trials"
     delete_from_start = np.ceil(reject/tr)
     seconds = np.arange(0, img.shape[-1]*tr, tr)
+    # sometimes a rounding error of ~0.1 seconds occured, so align the events with closest scan
+    if any(np.abs(seconds-ev['onset'].iloc[0]) != 0): 
+        closestsec = np.argmin(np.abs(seconds-ev['onset'].iloc[0]))
+        dif = ev['onset'].iloc[0] - seconds[closestsec]
+        seconds = seconds + dif
+        seconds = np.round(seconds)
+
     # Define stim on and stim off periods in seconds
     stimon = np.sort(
         np.array(list(set(seconds).intersection(ev['onset'].round()))))
