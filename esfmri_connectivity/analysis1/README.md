@@ -2,6 +2,8 @@
 
 Analysis 1 compares whether the stimulation site's community has greater displacement (i.e. es-on vs es-off) of the participation coefficient and within module degree z-score compared to other communities. This is quantified by looking at the max and median of both network theory measures.
 
+![](./figures/cartprofile_displacement.png)
+
 Summary of positive results: the median PC of the stimulation site's community increases when stimulation is on compared to stimulation is off. This difference was, on average, significantly greater than outside the stimulation community (p<0.05 Bonferroni corrected).
 
 All other comparisons confirmed the null hypothesis that there was no difference between stimulation community and outside its community.
