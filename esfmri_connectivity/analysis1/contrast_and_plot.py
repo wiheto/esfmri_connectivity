@@ -13,7 +13,7 @@ def shufflegroups(dat1, dat2, pnum=10000, tail=1):
     Funciton modified taken from teneto.
     """
     if len(dat1) != len(dat2):
-        raise ValueError("dat vectros must be of same length")
+        raise ValueError("dat vectors must be of same length")
     permdist = np.zeros(pnum)
     for i in range(0, pnum):
         porder = np.random.randint(1, 3, len(dat1))
