@@ -172,7 +172,7 @@ ax[1].set_ylim([-0.06, 0.11])
 ax[2].set_ylim([-0.6, 0.7])
 ax[3].set_ylim([-0.6, 0.7])
 
-plotje.styler(ax[0], title='max PC', xlabel='Stim site community', ylabel='P displacement\n(es-os - es-off)', aspectsquare=True)
+plotje.styler(ax[0], title='max PC', xlabel='Stim site community', ylabel='PC displacement\n(es-os - es-off)', aspectsquare=True)
 plotje.styler(ax[1], leftaxis='off', xlabel='Stim site community', title='median PC', aspectsquare=True)
 plotje.styler(ax[2], title='max z', xlabel='Stim site community', ylabel='z displacement\n(es-os - es-off)', aspectsquare=True)
 plotje.styler(ax[3], leftaxis='off', xlabel='Stim site community', title='median z', aspectsquare=True)
