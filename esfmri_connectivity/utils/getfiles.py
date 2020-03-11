@@ -95,14 +95,16 @@ def get_preproc_files(bids_dir, fmriprep_dir, qa_path='./esfmri_connectivity/pre
     return filepaths
 
 
-def get_events(bids_dir, subject, run, reject=5, return_type='block'):
+def get_events(bids_dir, subject, run, reject=5, return_type='block', layout=None):
     """
     Returns the index of stim on and stim off time periods.
     Should pass a subject and run that returns a unique file.
     Reject variable is the number of seconds at the start of each block that are removed.
     return_type can be block or run.
+    Allow passing bids layout as an argument to avoid reloading.
     """
-    layout = bids.BIDSLayout(bids_dir)
+    if layout is None:
+        layout = bids.BIDSLayout(bids_dir)
     # Get both events and images, check there is only one of each
     events = layout.get(suffix='events', extension='.tsv', session='postop',
                         return_type='file', subject=subject, run=int(run))

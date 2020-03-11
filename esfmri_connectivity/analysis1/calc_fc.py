@@ -1,6 +1,7 @@
 import pandas as pd
 from esfmri_connectivity.utils.getfiles import get_timeseries, get_events
 import bct
+import bids
 
 com_path = './esfmri_connectivity/communitydetection/data/'
 bids_dir = '/home/william/sherlock/scratch/data/esfmri/'
@@ -8,21 +9,18 @@ save_dir = './esfmri_connectivity/analysis1/data/'
 
 # Grab data for each subject/task and load
 files = get_timeseries(task='task-es', require_stiminfo=True)
-# Have to assume sub-314 runs are the same across all runs
+# Have to assume sub-314 runs are the same across all runs (checked and is the case)
+layout = bids.BIDSLayout(bids_dir)
 for _, f in enumerate(files):
     print(f)
     savelabels = f.split('/')[-1].split('_space-')[0]
     sub = savelabels.split('_')[0].split('-')[1]
     run = f.split('run-')[1].split('_')[0]
     eson, esoff = get_events(
-    bids_dir, subject=sub, run=run, return_type=None)
+    bids_dir, subject=sub, run=run, return_type=None, layout=layout)
     tstmp = pd.read_csv(f, index_col=[0], sep='\t')
     ts_eson = tstmp[eson.astype(str)].transpose()
     ts_esoff = tstmp[esoff.astype(str)].transpose()
-    # ts_eson = pd.concat(ts_eson)
-    # ts_eson.reset_index(inplace=True, drop=True)
-    # ts_esoff = pd.concat(ts_esoff)
-    # ts_esoff.reset_index(inplace=True, drop=True)
     parcel_index = ts_eson.columns
     # Load communities
     com = pd.read_csv(com_path + 'sub-' + sub + '_task-es' + '_communities.tsv', sep='\t', index_col=[0])
