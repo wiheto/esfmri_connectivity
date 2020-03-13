@@ -6,7 +6,7 @@ from nilearn.image.resampling import resample_to_img
 
 
 # Where the data is
-bids_dir = '/home/william/sherlock/scratch/data/esfmri/'
+bids_dir = '/data/'
 fmriprep_dir = 'derivatives/fmriprep-1.5.1/fmriprep'
 files = get_preproc_files(bids_dir, fmriprep_dir, pipeline=None)
 
