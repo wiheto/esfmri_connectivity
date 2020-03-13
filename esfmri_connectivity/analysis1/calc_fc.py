@@ -16,7 +16,7 @@ for _, f in enumerate(files):
     sub = savelabels.split('_')[0].split('-')[1]
     run = f.split('run-')[1].split('_')[0]
     # Sub-314 only has events in run 01. Rest are the same (checked)
-    if sub == '314': 
+    if sub == '314':
         r = '01'
     else:
         r = run
