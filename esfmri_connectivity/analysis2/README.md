@@ -35,7 +35,6 @@ The different models are compared with WAIC and LOO and founds in `./data/model_
 This script produces:
 
 1.  The posterior predictive checks of the best fitting model (pc_within and pc_outside). These are the p-values of the mean and IQR and are found in `./data/ppc_bestmodel.tsv`
-
 2.  The Gelman-Rubin statistic of the best fitting model. This is found in `./data/gelmanrubin_bestmodel.tsv`
 3.  A figure of the posterior distributions of the best model. This is found in `figures/posterior.png/svg`
 

@@ -72,8 +72,8 @@ with pm.Model() as model:
     eps = pm.HalfCauchy('eps', beta=5)
     # Expected value
     y_est = a
-    for n in range(len(betas)):
-        y_est += betas[n] * x[n]
+    for n, beta in enumerate(betas):
+        y_est += beta * x[n]
     y_like = pm.Normal('y_like', mu=y_est, sd=eps, observed=y)
 
 
