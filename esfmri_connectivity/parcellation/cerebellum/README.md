@@ -42,4 +42,4 @@ This will create the file: `./esfmri_connectivity/parcellation/cerebellum/tpl-MN
 
 Finally, copy the metadata from MNI152NLin6Asym to MNI152NLin2009cAsym. It is the same information, but good to update the tpl key/value pair:
 
-`cp tpl-MNI152NLin6Asym_res-01_atlas-King2019Cerebellum_dseg.tsv tpl-MNI152NLin2009cAsym_res-01_atlas-King2019Cerebellum_dseg.tsv`
+`cp ./esfmri_connectivity/parcellation/cerebellum/tpl-MNI152NLin6Asym_res-01_atlas-King2019Cerebellum_dseg.tsv ./esfmri_connectivity/parcellation/cerebellum/tpl-MNI152NLin2009cAsym_res-01_atlas-King2019Cerebellum_dseg.tsv`

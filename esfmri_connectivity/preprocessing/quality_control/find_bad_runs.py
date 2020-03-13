@@ -1,7 +1,7 @@
 import bids
 import pandas as pd
 # Bad run is defined as any of the runs where the average movement was over 0.5
-bids_dir = '/home/esfmri/esfmri_data/'
+bids_dir = '/data/'
 fmriprep_dir = 'derivatives/fmriprep-1.5.1/fmriprep/'
 qa_dir = './esfmri_connectivity/preprocessing/quality_control/'
 

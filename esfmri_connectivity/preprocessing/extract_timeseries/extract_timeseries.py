@@ -5,7 +5,7 @@ import bids
 import numpy as np
 import os
 # Where the data is
-bids_dir = '/home/william/sherlock/scratch/data/esfmri/'
+bids_dir = '/data/'
 derivative_dir = 'derivatives/fmridenoise/'
 fmriprep_dir = 'derivatives/fmriprep-1.5.1/fmriprep/'
 pipeline = '24HMP_aCompCor_SpikeReg_4GSR'
