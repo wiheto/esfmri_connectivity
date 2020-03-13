@@ -41,10 +41,10 @@ This is the output if following the steps above.
 
 The parcellation used is included within the repo. But to replicate all the steps to recreate the parcellation see:
 
-- Amygdala - see: `./esfmri_connectivity/parcellation/amygdala/README.md`
-- Cerebellum - see: `./esfmri_connectivity/parcellation/cerebellum/README.md`
-- Subcortical - see: `./esfmri_connectivity/parcellation/cerebellum/README.md`
-- Create Smörgåsbord parcellation - see `./esfmri_connectivity/parcellation/README.md`
+  - Amygdala - see: `./esfmri_connectivity/parcellation/amygdala/README.md`
+  - Cerebellum - see: `./esfmri_connectivity/parcellation/cerebellum/README.md`
+  - Subcortical - see: `./esfmri_connectivity/parcellation/cerebellum/README.md`
+  - Create Smörgåsbord parcellation - see `./esfmri_connectivity/parcellation/README.md`
 
 ### Preprocessing steps
 
@@ -77,6 +77,3 @@ The parcellation used is included within the repo. But to replicate all the step
 `docker run -u esfmri -v $(pwd):/home/esfmri/ -v $ESFMRI_DATA:/data/  -t esfmri python -m esfmri_connectivity.analysis1.calc_fc`
 
 `docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.analysis1.contrast_and_plot`
-
-
-
