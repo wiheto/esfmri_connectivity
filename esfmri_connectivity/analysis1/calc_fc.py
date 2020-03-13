@@ -4,20 +4,24 @@ import bct
 import bids
 
 com_path = './esfmri_connectivity/communitydetection/data/'
-bids_dir = '/home/william/sherlock/scratch/data/esfmri/'
+bids_dir = '/data/'
 save_dir = './esfmri_connectivity/analysis1/data/'
 
 # Grab data for each subject/task and load
 files = get_timeseries(task='task-es', require_stiminfo=True)
-# Have to assume sub-314 runs are the same across all runs (checked and is the case)
 layout = bids.BIDSLayout(bids_dir)
 for _, f in enumerate(files):
     print(f)
     savelabels = f.split('/')[-1].split('_space-')[0]
     sub = savelabels.split('_')[0].split('-')[1]
     run = f.split('run-')[1].split('_')[0]
+    # Sub-314 only has events in run 01. Rest are the same (checked)
+    if sub == '314': 
+        r = '01'
+    else:
+        r = run
     eson, esoff = get_events(
-    bids_dir, subject=sub, run=run, return_type=None, layout=layout)
+    bids_dir, subject=sub, run=r, return_type=None, layout=layout)
     tstmp = pd.read_csv(f, index_col=[0], sep='\t')
     ts_eson = tstmp[eson.astype(str)].transpose()
     ts_esoff = tstmp[esoff.astype(str)].transpose()
