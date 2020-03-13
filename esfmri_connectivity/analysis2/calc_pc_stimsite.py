@@ -1,8 +1,6 @@
-
 import pandas as pd
 from esfmri_connectivity.utils.getfiles import get_timeseries
 import bct
-import bids
 import numpy as np
 import matplotlib.pyplot as plt
 import plotje
