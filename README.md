@@ -77,3 +77,11 @@ The parcellation used is included within the repo. But to replicate all the step
 `docker run -u esfmri -v $(pwd):/home/esfmri/ -v $ESFMRI_DATA:/data/  -t esfmri python -m esfmri_connectivity.analysis1.calc_fc`
 
 `docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.analysis1.contrast_and_plot`
+
+### Analysis 2
+
+`docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.analysis2.calc_pc_stimsite`
+
+`docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.analysis2.trainmodels`
+
+`docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.analysis2.plot_best_model`
