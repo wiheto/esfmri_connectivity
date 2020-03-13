@@ -108,7 +108,7 @@ def get_events(bids_dir, subject, run, reject=5, return_type='block', layout=Non
     # Get both events and images, check there is only one of each
     events = layout.get(suffix='events', extension='.tsv', session='postop',
                         return_type='file', subject=subject, run=int(run))
-    images = layout.get(suffix='bold', extension='.nii.gz', session='postop',
+    images = layout.get(suffix='bold', extension=['.nii', '.nii.gz'], session='postop',
                         return_type='file', subject=subject, run=int(run))
     if (len(events) != len(images)) and (len(events) != 1):
         raise ValueError(
