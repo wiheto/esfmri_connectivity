@@ -34,13 +34,11 @@ for mi, x_vars in enumerate(x_vars_list):
             xstr += s.split('med_')[1]
     else:
         tmp = df_cp[x_vars].values
-        x.append(tmp)
+        x.append(zify(tmp))
         xstr += x_vars.split('med_')[1]
 
     with pm.Model():
-        # Intercept for each county, distributed around group mean mu_a
         a = pm.Cauchy('a_M' + str(mi), alpha=0, beta=1)
-        # Intercept for each county, distributed around group mean mu_a
         betas = []
         if isinstance(x_vars, tuple):
             for i, n in enumerate(range(len(x_vars))):
@@ -62,6 +60,23 @@ for mi, x_vars in enumerate(x_vars_list):
         pm.save_trace(traces, './esfmri_connectivity/analysis2/data/traces/' + xstr, overwrite=True)
 
     trace_dict[xstr] = traces
+
+
+mi = 'C'
+xstr = 'control'
+with pm.Model():
+    a = pm.Cauchy('a_M' + str(mi), alpha=0, beta=1)
+    eps = pm.HalfCauchy('eps', beta=5)
+
+    # Expected value
+    y_est = a
+
+    y_like = pm.Normal('y_like', mu=y_est, sd=eps, observed=y)
+
+    traces = pm.sample(draws=10000, tune=1000, chains=2, random_seed=2020)
+    pm.save_trace(traces, './esfmri_connectivity/analysis2/data/traces/' + xstr, overwrite=True)
+
+trace_dict[xstr] = traces
 
 
 loo_results = arviz.compare(trace_dict, 'loo')
