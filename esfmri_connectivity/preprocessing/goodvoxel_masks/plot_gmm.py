@@ -40,4 +40,4 @@ for f in files:
 
     fig.tight_layout()
     fig.savefig(rel_dir + 'gmm_figures/' +
-                f.split('_voxdist')[0] + '_hist.png', r=300)
+                f.split('_voxdist')[0] + '_hist.svg')
