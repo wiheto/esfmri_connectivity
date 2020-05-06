@@ -23,3 +23,7 @@ Next, we ran `contrast_and_plot.py` by running (this time with the Docker contai
 This performs the statistical analysis for "analysis 1", and saves the output to `stats` and `figures`.
 
 In figures, there is an SVG and PNG file summarizing the results (`cartprofile_displacement`). In stats, there are two tsv files. One is a `summary.tsv` of the statistical tests performed. The second is the non-parametric distributions generated for the statistical testing (`nonparametric_permuted_distributions.tsv`).
+
+Finally, we also did some post hoc plotting of nodal information to give better understanding of what was going on on the nodal level . This outputs a figure for a randomly selected subject ()
+
+`docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.analysis1.plot_cartprofile_pernode`
