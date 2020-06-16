@@ -6,12 +6,16 @@ Community detection was done with the Leiden algorithm ([Traag et al 2018](https
 
 __run_communitydetection.py__ creates all the contents of this directory.
 
+__label_communities.py__ associates each community with a network in the Yeo 7 template.
+
 __best_resolution_parametrs.tsv__ tabular file containing the resolution parameter with the largest adjusted mutual information value for each subtask combination.
 
 __./ami_figures__ contains the adjusted mutual information for each subtask combination for different settings of the resolution parameter.
 
-__./data__ contains the community partition of each subtask.
+__./data__ contains the community partition of each subtask. Es runs got each community labeled to the community they most overlap with. 
 
 ## To replicate
 
 ``docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.communitydetection.run_communitydetection``
+
+``docker run -u esfmri -v $(pwd):/home/esfmri/ -t esfmri python -m esfmri_connectivity.communitydetection.label_communities``
