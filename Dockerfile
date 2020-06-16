@@ -30,6 +30,7 @@ RUN pip install nipype==1.3.0-rc1
 RUN pip install nibabel==2.2.
 RUN pip install nilearn==0.6.0a0
 RUN pip install arviz==0.3.3
+RUN pip install seaborn==0.10.0
 # add user and create a default working directory
 RUN useradd -ms /bin/bash esfmri
 WORKDIR /home/esfmri
