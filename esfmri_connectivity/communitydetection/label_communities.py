@@ -26,7 +26,7 @@ com_path = './esfmri_connectivity/communitydetection/data/'
 files = os.listdir(com_path)
 files = [f for f in files if 'task-es' in f and 'communities' in f]
 
-for f in files: 
+for f in files:
 
     sub = f.split('_')[0].split('-')[1]
     label = {}
@@ -37,6 +37,6 @@ for f in files:
         net, counts = np.unique(c_alt, return_counts=True)
         counts = counts/len(c_alt)
         label[c] = net[np.argmax(counts)]
-        
+
     df = pd.Series(label)
     df.to_csv(com_path + sub + '_task-es_labels.tsv', sep='\t')
