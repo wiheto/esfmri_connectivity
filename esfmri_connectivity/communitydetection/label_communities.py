@@ -1,3 +1,9 @@
+"""
+Used in supplementary figure. 
+Assigns a label from the Yeo 7 atlas to each of the communities for each subject. 
+Note, this is only a quick estimate.
+"""
+
 import nibabel as nib
 import pandas as pd
 import numpy as np
@@ -37,6 +43,5 @@ for f in files:
         net, counts = np.unique(c_alt, return_counts=True)
         counts = counts/len(c_alt)
         label[c] = net[np.argmax(counts)]
-
     df = pd.Series(label)
-    df.to_csv(com_path + sub + '_task-es_labels.tsv', sep='\t')
+    df.to_csv(com_path + 'sub-' + sub + '_task-es_labels.tsv', sep='\t')
