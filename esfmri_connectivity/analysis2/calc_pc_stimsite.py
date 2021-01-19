@@ -12,6 +12,8 @@ save_dir = './esfmri_connectivity/analysis1/data/'
 # Get parcel info at stimsite and only if that parcel is included for the subject
 stim_df = pd.read_csv('./esfmri_connectivity/stimulation_sites/stimsite2parcel.tsv', sep='\t', index_col=0)
 stim_df = stim_df[stim_df['parcel_included_in_sub_mask']==True]
+stim_df = stim_df[stim_df['stimsite_issingleton']==0]
+
 
 ## Step 1, get the PC at the stim site for all runs (using concatentated es-fMRI to get the PC)
 
@@ -44,20 +46,62 @@ stim_df['PC'] = df_pc['PC']
 
 stim_df.to_csv('./esfmri_connectivity/analysis2/data/pc_at_stimsite.tsv', sep='\t')
 
-# Plot figure
+# Plot figure (no colourdiff)
 fig, ax = plt.subplots(1)
 sublabs = []
-color = ['lightskyblue', 'steelblue']
+color = ['gray', 'gray']
 for subi, sub in enumerate(np.unique(stim_df['subject'])):
     sublabs.append(sub)
     subdf = stim_df[stim_df['subject'] == int(sub)]
     ci = np.remainder(subi, 2)
     ax.scatter(subdf['PC'], subi+np.zeros(len(subdf)),color=color[ci])
 
-plotje.styler(ax, xlabel='PC', ylabel='Subjects', title='PC of stimualtion site at different es runs')
+plotje.styler(ax, xlabel='PC', ylabel='Subjects', aspectsquare=True, title='PC of stimualtion site at different es runs')
 ax.set_yticks(np.arange(0, len(sublabs)))
 ax.set_yticklabels(sublabs)
+ax.set_xticks(np.arange(0.2, 0.91, 0.1))
+ax.set_xticklabels(np.round(np.arange(0.2, 0.91, 0.1),2))
 
 #save
 fig.savefig('./esfmri_connectivity/analysis2/figures/pc_at_stimsite.png', r=600)
 fig.savefig('./esfmri_connectivity/analysis2/figures/pc_at_stimsite.svg')
+
+
+
+# Plot figure (subcortical)
+fig, ax = plt.subplots(1)
+sublabs = []
+color = ['lightgray', 'gray']
+a = 0
+b = 1
+for subi, sub in enumerate(np.unique(stim_df['subject'])):
+    sublabs.append(sub)
+    subdf = stim_df[stim_df['subject'] == int(sub)]
+    if len(subdf[subdf['overlapping_parcel_index']>400]) > 0: 
+        tmp = subdf[subdf['overlapping_parcel_index']>400]
+        if a == 0:
+            lab = 'Subcortical'
+            a = 1
+        else:
+            lab = None
+        ax.scatter(tmp['PC'], subi+np.zeros(len(tmp)),color=color[0], label=lab)
+    if len(subdf[subdf['overlapping_parcel_index']<=400]) > 0: 
+        if a == 0:
+            lab = 'Cortical'
+            a = 1
+        else:
+            lab = None
+        tmp = subdf[subdf['overlapping_parcel_index']<=400]
+        ax.scatter(tmp['PC'], subi+np.zeros(len(tmp)),color=color[1], label=None)
+
+plotje.styler(ax, xlabel='PC', ylabel='Subjects', aspectsquare=True, title='PC of stimualtion site at different es runs', legend=True)
+ax.set_yticks(np.arange(0, len(sublabs)))
+ax.set_yticklabels(sublabs)
+ax.set_xticks(np.arange(0.2, 0.91, 0.1))
+ax.set_xticklabels(np.round(np.arange(0.2, 0.91, 0.1),2))
+
+#save
+fig.savefig('./esfmri_connectivity/analysis2/figures/pc_at_stimsite_cortical.png', r=600)
+fig.savefig('./esfmri_connectivity/analysis2/figures/pc_at_stimsite_cortical.svg')
+
+

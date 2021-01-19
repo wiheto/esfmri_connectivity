@@ -10,12 +10,16 @@ df_stim = pd.read_csv('./esfmri_connectivity/analysis2/data/pc_at_stimsite.tsv',
 def zify(x):
     return (x - np.mean(x)) / np.std(x)
 
-x_vars_1 = ['disp_med_pc_in', 'disp_med_pc_out', 'disp_med_z_in', 'disp_med_z_out']
+x_vars_1 = ['disp_med_pc_in', 'disp_med_pc_out', 'disp_med_z_in', 'disp_med_z_out', 'disp_max_pc_in', 'disp_max_pc_out', 'disp_max_z_in', 'disp_max_z_out']
 x_vars_2 = list(itertools.combinations(x_vars_1, 2))
 x_vars_3 = list(itertools.combinations(x_vars_1, 3))
 x_vars_4 = list(itertools.combinations(x_vars_1, 4))
+x_vars_5 = list(itertools.combinations(x_vars_1, 5))
+x_vars_6 = list(itertools.combinations(x_vars_1, 6))
+x_vars_7 = list(itertools.combinations(x_vars_1, 7))
+x_vars_8 = list(itertools.combinations(x_vars_1, 8))
 
-x_vars_list = x_vars_1 + x_vars_2 + x_vars_3 + x_vars_4
+x_vars_list = x_vars_1 + x_vars_2 + x_vars_3 + x_vars_4 + x_vars_5 + x_vars_6 + x_vars_7 + x_vars_8
 
 
 trace_dict = {}
@@ -31,11 +35,13 @@ for mi, x_vars in enumerate(x_vars_list):
             x.append(zify(tmp))
             if i > 0:
                 xstr += '+'
-            xstr += s.split('med_')[1]
+            # xstr += s.split('med_')[1]
+            xstr += s
     else:
         tmp = df_cp[x_vars].values
         x.append(zify(tmp))
-        xstr += x_vars.split('med_')[1]
+        # xstr += x_vars.split('med_')[1]
+        xstr += x_vars
 
     with pm.Model():
         a = pm.Cauchy('a_M' + str(mi), alpha=0, beta=1)
